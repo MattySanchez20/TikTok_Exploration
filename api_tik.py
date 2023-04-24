@@ -7,4 +7,4 @@ driver.get("https://www.tiktok.com/foryou")
 
 print(driver.title)
 
-# driver.quit()
+driver.quit()
