@@ -1,4 +1,3 @@
-# webscraping using selenium
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -12,7 +11,7 @@ import time
 # options allows you to set Chrome browser options
 options = Options()
 
-# detach means it allows chrome to run in a seperate window (set to true)
+# detach means it allows chrome to run in a separate window (set to true)
 options.add_experimental_option('detach', True)
 
 # driver uses google chrome as the web browser
@@ -21,16 +20,14 @@ driver = webdriver.Chrome(options=options)
 # directing the driver to the desired url
 driver.get('https://www.tiktok.com')
 
-# maximaises window
+# maximizes window
 driver.maximize_window()
 
 # makes the driver wait 10 seconds to allow popup to come up
 wait = WebDriverWait(driver, 10)
 
 # xpath to window close
-window_close = """
-    //div[@data-e2e='modal-close-inner-button']
-"""
+window_close = "//div[@data-e2e='modal-close-inner-button']"
 
 # once it has waited, it will click the close button (found by xpath)
 close_button = wait.until(EC.element_to_be_clickable((By.XPATH, window_close)))
@@ -38,26 +35,14 @@ close_button = wait.until(EC.element_to_be_clickable((By.XPATH, window_close)))
 # clicks the close button
 close_button.click()
 
-# refresh
-driver.refresh()
+# wait for search box to become visible
+search_box = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "input[data-e2e='search-user-input']")))
 
-# xpath to input box
-search_box = """
-    //input[@name='q']
-"""
+# scroll the search box into view
+driver.execute_script("arguments[0].scrollIntoView();", search_box)
 
-# search = driver.find_element('xpath', search_box)
+# send keys to search box
+search_box.send_keys("#hello")
 
-wait_for_search = WebDriverWait(driver, 10)
-
-
-search = wait_for_search.until(
-    EC.visibility_of_element_located(
-        (
-            By.XPATH, search_box
-        )
-    )
-)
-
-# search.send_keys('#hello')
-# search.send_keys(Keys.ENTER)
+# submit the search query by pressing enter
+search_box.send_keys(Keys.ENTER)
