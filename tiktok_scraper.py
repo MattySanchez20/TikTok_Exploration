@@ -21,23 +21,11 @@ driver = webdriver.Chrome(options=options)
 # directing the driver to the desired url
 driver.get('https://www.tiktok.com')
 
+# makes the driver wait 10 seconds to allow popup to come up
+wait = WebDriverWait(driver, 10)
 
-time.sleep(5)
+# once it has waited, it will click the close button (found by xpath)
+close_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@data-e2e='modal-close-inner-button']")))
 
-login_string = """
-    
-"""
-
-search_string = """
-    //input[@placeholder='Search']
-"""
-
-# obtaining html using string specified above
-dvr = driver.find_elements('xpath', search_string)
-
-# # obtains the last pagination number to know how many pages to iterate through
-for d in dvr:
-    d.send_keys("#hello")
-    d.send_keys(Keys.ENTER)
-
-# driver.close()
+# clicks the close button
+close_button.click()
