@@ -86,4 +86,16 @@ while True:
     except:
         ActionChains(driver).key_down(Keys.DOWN).perform()
 
+# click on use phone number to log in button
 popup_element.click()
+
+# xpath to find phone number placeholder
+enter_phone_xpath = """
+    //input[@placeholder='Phone number']
+"""
+
+# find the phone number placeholder element
+enter_phone_dvr = driver.find_element('xpath', enter_phone_xpath)
+
+# enter phone number into phone number placeholder
+enter_phone_dvr.send_keys('07447991035')
