@@ -33,7 +33,13 @@ window_close = """
 """
 
 # once it has waited, it will click the close button (found by xpath)
-close_button = wait.until(EC.element_to_be_clickable((By.XPATH, window_close)))
+close_button = wait.until(
+    EC.element_to_be_clickable(
+        (
+            By.XPATH, window_close
+        )
+    )
+)
 
 # clicks the close button
 close_button.click()
@@ -46,11 +52,10 @@ search_box = """
     //input[@name='q']
 """
 
-# search = driver.find_element('xpath', search_box)
-
+# creating a webdriver wait class instance that waits for 10 seconds
 wait_for_search = WebDriverWait(driver, 10)
 
-
+# waits until selenium can find the search box xpath
 search = wait_for_search.until(
     EC.visibility_of_element_located(
         (
@@ -59,5 +64,8 @@ search = wait_for_search.until(
     )
 )
 
-# search.send_keys('#hello')
-# search.send_keys(Keys.ENTER)
+# entering #hello into the search box
+search.send_keys('#hello')
+
+# hits enter in the search box to search for result
+search.send_keys(Keys.ENTER)
