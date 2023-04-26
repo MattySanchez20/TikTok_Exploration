@@ -119,7 +119,7 @@ phone_extension_dropdown_input_xpath = """
     //input[@id='login-phone-search']
 """
 
-# find country code search box element 
+# find country code search box element
 phone_extension_dropdown_input_xpath_dvr = driver.find_element(
     'xpath',
     phone_extension_dropdown_input_xpath
