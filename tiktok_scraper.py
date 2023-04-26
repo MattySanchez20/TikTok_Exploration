@@ -99,3 +99,45 @@ enter_phone_dvr = driver.find_element('xpath', enter_phone_xpath)
 
 # enter phone number into phone number placeholder
 enter_phone_dvr.send_keys('07447991035')
+
+# xpath for aria expanded to find phone code extension (+44)
+phone_extension_dropdown_xpath = """
+    //div[@class='tiktok-1nc4fij-DivAreaSelectionContainer ewblsjs3']
+"""
+
+# find the dropdown menu via xpath
+p_extension_dropdown_dvr = driver.find_element(
+    'xpath',
+    phone_extension_dropdown_xpath
+)
+
+# click the dropdown menu to show search box to type in country
+p_extension_dropdown_dvr.click()
+
+# xpath to find country code search box country
+phone_extension_dropdown_input_xpath = """
+    //input[@id='login-phone-search']
+"""
+
+# find country code search box element 
+phone_extension_dropdown_input_xpath_dvr = driver.find_element(
+    'xpath',
+    phone_extension_dropdown_input_xpath
+)
+
+# enters united kingdom in country code search box
+phone_extension_dropdown_input_xpath_dvr.send_keys('united kingdom')
+
+# sends enter key to country code search box
+phone_extension_dropdown_input_xpath_dvr.send_keys(Keys.ENTER)
+
+# finds send code button via xpath
+send_code_xpath = """
+    //button[@data-e2e='send-code-button']
+"""
+
+# finds the send code button element
+send_code_dvr = driver.find_element('xpath', send_code_xpath)
+
+# clicks send code button element
+send_code_dvr.click()
