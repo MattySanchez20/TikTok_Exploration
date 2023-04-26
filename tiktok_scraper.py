@@ -7,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 
 # options allows you to set Chrome browser options
@@ -44,7 +45,7 @@ close_button = wait.until(
 # clicks the close button
 close_button.click()
 
-# refresh
+# refreshes page because if it doesn't, it can't find the search box xpath
 driver.refresh()
 
 # xpath to input box
@@ -64,8 +65,25 @@ search = wait_for_search.until(
     )
 )
 
+
 # entering #hello into the search box
 search.send_keys('#hello')
 
 # hits enter in the search box to search for result
 search.send_keys(Keys.ENTER)
+
+# xpath to find the login via phone or email button
+use_phone_xpath = """
+    //a[@href='/login/phone-or-email']
+"""
+
+# while true, keep scrolling until the driver has found the use_phone_xpath
+while True:
+    try:
+        popup_element = driver.find_element('xpath', use_phone_xpath)
+        driver.execute_script("arguments[0].scrollIntoView();", popup_element)
+        break
+    except:
+        ActionChains(driver).key_down(Keys.DOWN).perform()
+
+popup_element.click()
