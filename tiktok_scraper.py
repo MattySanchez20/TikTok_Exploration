@@ -98,7 +98,7 @@ enter_phone_xpath = """
 enter_phone_dvr = driver.find_element('xpath', enter_phone_xpath)
 
 # enter phone number into phone number placeholder
-enter_phone_dvr.send_keys('07447991035')
+enter_phone_dvr.send_keys('your phone number')
 
 # xpath for aria expanded to find phone code extension (+44)
 phone_extension_dropdown_xpath = """
@@ -141,3 +141,12 @@ send_code_dvr = driver.find_element('xpath', send_code_xpath)
 
 # clicks send code button element
 send_code_dvr.click()
+
+# next steps: make account with tiktok with a phone number
+# then enter it into the login with phone number box
+# once logged in, iterate through all videos on tiktok
+# gather everything you can comments, likes other hashtags
+# and download the video
+# highly recommend using non structured database such as mongodb
+# ^ speak to Miguel on that one
+# tiktok api is not working for uk researchers
