@@ -150,3 +150,8 @@ send_code_dvr.click()
 # highly recommend using non structured database such as mongodb
 # ^ speak to Miguel on that one
 # tiktok api is not working for uk researchers
+# extra: add exceptions to handle errors that occur from element
+# not appearing
+# for example:
+# selenium.common.exceptions.NoSuchWindowException:
+# Message: no such window: target window already closed
